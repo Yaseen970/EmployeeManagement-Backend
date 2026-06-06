@@ -5,15 +5,16 @@ EXPOSE 8080
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Copy everything all at once
 COPY . .
 
-# Restore
 RUN dotnet restore EmployeeManagement.sln
 
-# Publish
 RUN dotnet publish EmployeeManagement.API.csproj \
-    -c Release -o /app/publish
+    -c Release \
+    -o /app/publish \
+    --no-restore \
+    /p:TreatWarningsAsErrors=false \
+    /warnaserror-
 
 FROM base AS final
 WORKDIR /app

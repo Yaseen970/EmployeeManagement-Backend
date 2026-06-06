@@ -23,5 +23,5 @@ RUN dotnet publish EmployeeManagement.API/EmployeeManagement.API.csproj \
 
 FROM base AS final
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=build /app/publish .
 ENTRYPOINT ["dotnet", "EmployeeManagement.API.dll"]

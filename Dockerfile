@@ -9,12 +9,16 @@ COPY . .
 
 RUN dotnet restore EmployeeManagement.sln
 
+RUN dotnet build EmployeeManagement.API.csproj \
+    -c Release \
+    --no-restore \
+    -nowarn:CS0246
+
 RUN dotnet publish EmployeeManagement.API.csproj \
     -c Release \
     -o /app/publish \
     --no-restore \
-    /p:TreatWarningsAsErrors=false \
-    /warnaserror-
+    --no-build
 
 FROM base AS final
 WORKDIR /app

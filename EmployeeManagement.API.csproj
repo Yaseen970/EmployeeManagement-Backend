@@ -5,7 +5,11 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-
+<ItemGroup>
+    <Compile Remove="EmployeeManagement.Domain\**" />
+    <Compile Remove="EmployeeManagement.Application\**" />
+    <Compile Remove="EmployeeManagement.Infrastructure\**" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="12.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
